@@ -15,7 +15,9 @@ A browser extension that guards your time: it blocks or time-limits distracting 
 
 [العربية](#العربية) · [English](#english)
 
-<img src="docs/screenshots/overview-ar.png" alt="الصفحة الرئيسية للإعدادات: وقت اليوم وحدود كل موقع ومخطط آخر 7 أيام" width="860">
+<img src="media/time-is-a-sword-demo.gif" alt="جولة في الإضافة: إضافة موقع، وحد يومي مع التنبيه وصفحة التذكير، وخطوة التأكيد، والصلاة أولًا، والنافذة المنبثقة" width="860">
+<br>
+<sub>🎬 <a href="media/time-is-a-sword-demo.mp4">شاهد الفيديو بجودة أعلى</a> · <a href="media/time-is-a-sword-demo.mp4">Watch in higher quality</a></sub>
 
 </div>
 
