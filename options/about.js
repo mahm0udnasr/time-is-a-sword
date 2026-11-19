@@ -26,7 +26,7 @@ const AUTHOR = {
     ['LinkedIn', 'https://linkedin.com/in/mahm0udnasr', { lucide: 'briefcase-business' }],
     ['Telegram', 'https://t.me/mahm0udnasr', { brand: 'telegram' }],
     ['Kaggle', 'https://kaggle.com/mahm0udnasr', { lucide: 'trophy' }],
-    ['Facebook', 'https://facebook.com/mhm0udnasr/', { brand: 'facebook' }]
+    ['Facebook', 'https://facebook.com/mahm0udnasr1/', { brand: 'facebook' }]
   ]
 };
 
