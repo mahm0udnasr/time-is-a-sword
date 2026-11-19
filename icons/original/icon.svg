@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B6B63"/><stop offset="1" stop-color="#0D3B3A"/></linearGradient>
+<clipPath id="up"><polygon points="0,0 128,0 128,0 0,128"/></clipPath>
+<clipPath id="dn"><polygon points="128,0 128,128 0,128"/></clipPath>
+</defs><rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
+<g clip-path="url(#up)" transform="translate(-7 -7)"><rect x="24" y="30" width="80" height="68" rx="10" fill="#F6EEDC"/><rect x="24" y="44" width="80" height="4" fill="#D9CFBA"/><g fill="#0F4544"><circle cx="34" cy="37" r="2.8"/><circle cx="42" cy="37" r="2.8"/><circle cx="50" cy="37" r="2.8"/></g></g>
+<g clip-path="url(#dn)" transform="translate(7 7)"><rect x="24" y="30" width="80" height="68" rx="10" fill="#F6EEDC"/><rect x="24" y="44" width="80" height="4" fill="#D9CFBA"/><g fill="#0F4544"><circle cx="34" cy="37" r="2.8"/><circle cx="42" cy="37" r="2.8"/><circle cx="50" cy="37" r="2.8"/></g></g>
+<g transform="rotate(45 64 64) translate(64 64) scale(0.92) translate(-64 -64)" stroke="#0D3B3A" stroke-width="2.5" stroke-linejoin="round"><path d="M64 14 L69 26 L69 76 L59 76 L59 26 Z" fill="#E8B84A"/><rect x="51" y="75" width="26" height="6" rx="3" fill="#E8B84A"/><rect x="61" y="81" width="6" height="13" rx="2.5" fill="#E8B84A"/><circle cx="64" cy="98" r="4.5" fill="#E8B84A"/></g>
+</svg>

@@ -1,0 +1,34 @@
+/* popup.css — toolbar popup. Shared pieces come from shared/ui.css. */
+
+body { width: 340px; padding: 12px; display: grid; gap: 10px; font-size: 14px; }
+p { margin: 0; }
+
+.top { display: flex; justify-content: space-between; align-items: center; padding: 2px 2px 2px 4px; }
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.brand img { border-radius: 6px; }
+
+.card { padding: 14px 16px; }
+.card-head { margin-bottom: 10px; }
+
+/* Current site */
+.hero { display: grid; gap: 8px; }
+.hero-head { display: flex; align-items: center; gap: 10px; }
+.hero-head .avatar { width: 32px; height: 32px; font-size: 13px; flex: none; }
+.hero-title { display: grid; min-width: 0; flex: 1; }
+.hero-domain { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hero-time { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.hero-time small { font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.hero.blocked .hero-time { color: var(--danger); font-size: 17px; line-height: 1.4; }
+.badge.danger { background: var(--danger-soft); color: var(--danger); }
+.pause { width: 100%; margin-top: 2px; font-size: 13px; }
+
+.usage-list li { padding: 8px 0; }
+.empty { text-align: center; padding: 8px 0; }
+
+footer { display: flex; align-items: center; gap: 6px; padding: 0 4px; }
+footer .icon { width: 14px; height: 14px; }
+
+.top-actions { display: flex; align-items: center; gap: 2px; }
+.lang-mini { min-width: 30px; height: 30px; font-size: 12px; font-weight: 700; padding: 0 8px; border-radius: 999px; }
+[dir='ltr'] .lang-mini span { font-family: 'IBM Plex Sans Arabic', var(--ui-font); font-size: 15px; }
+.lang-mini span { unicode-bidi: isolate; }

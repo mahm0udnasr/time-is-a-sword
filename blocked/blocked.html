@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>وقتك</title>
+  <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <main data-poem-room>
+    <!-- Prayer lock only (Salah First): "حان وقت صلاة الظهر · 11:40" -->
+    <p class="prayer-line" id="prayer-line" hidden></p>
+    <figure class="reminder" id="reminder" lang="ar" dir="rtl" hidden>
+      <blockquote class="quote" id="quote-text"></blockquote>
+      <figcaption class="quote source" id="quote-source"></figcaption>
+    </figure>
+    <!-- A quiet way out: pause this site (countdown + typing a reminder first). -->
+    <div class="pause-area" id="pause-area" hidden>
+      <button type="button" class="pause-link" id="pause-link"></button>
+      <p class="pause-msg" id="pause-msg" role="status" hidden></p>
+    </div>
+  </main>
+  <script type="module" src="../shared/theme.js"></script>
+  <script type="module" src="blocked.js"></script>
+</body>
+</html>

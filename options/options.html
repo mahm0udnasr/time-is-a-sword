@@ -1,0 +1,253 @@
+<!doctype html>
+<!-- Arabic by default; shared/i18n.js switches lang/dir and fills every [data-i18n]. -->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="page.title">إعدادات الوقت سيف</title>
+  <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar. On narrow screens: a top bar with a menu button, and the
+         tabs + theme + language in a drawer that slides in from the start side. -->
+    <aside class="sidebar">
+      <div class="topbar">
+        <div class="brand">
+          <img src="../icons/icon.svg" alt="" width="28" height="28">
+          <span data-i18n="app.name">الوقت سيف</span>
+        </div>
+        <button type="button" id="menu-btn" class="ghost icon-only menu-btn" aria-expanded="false" aria-controls="drawer" data-i18n-aria-label="menu.open" data-i18n-title="menu.open"><i data-icon="menu"></i></button>
+      </div>
+
+      <!-- Inside the sidebar on purpose: same stacking context as the drawer, so it sits below it. -->
+      <div class="scrim" id="scrim" hidden></div>
+      <div class="drawer" id="drawer">
+        <div class="drawer-head">
+          <div class="brand">
+            <img src="../icons/icon.svg" alt="" width="28" height="28">
+            <span data-i18n="app.name">الوقت سيف</span>
+          </div>
+          <button type="button" id="menu-close" class="ghost icon-only" data-i18n-aria-label="menu.close" data-i18n-title="menu.close"><i data-icon="x"></i></button>
+        </div>
+
+        <nav class="tabs" role="tablist" data-i18n-aria-label="nav.label">
+          <button role="tab" data-tab="overview" id="tab-overview" aria-controls="panel-overview"><i data-icon="layout-dashboard"></i><span data-i18n="nav.overview"></span></button>
+          <button role="tab" data-tab="sites" id="tab-sites" aria-controls="panel-sites"><i data-icon="globe"></i><span data-i18n="nav.sites"></span><span class="tab-count" id="count-sites"></span></button>
+          <button role="tab" data-tab="groups" id="tab-groups" aria-controls="panel-groups"><i data-icon="layers"></i><span data-i18n="nav.groups"></span><span class="tab-count" id="count-groups"></span></button>
+          <button role="tab" data-tab="prayer" id="tab-prayer" aria-controls="panel-prayer"><i data-icon="moon-star"></i><span data-i18n="nav.prayer"></span><span class="tab-dot" id="prayer-dot" hidden></span></button>
+          <button role="tab" data-tab="about" id="tab-about" aria-controls="panel-about"><i data-icon="user-round"></i><span data-i18n="nav.about"></span></button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="theme-switch" role="radiogroup" data-i18n-aria-label="theme.label">
+            <button type="button" role="radio" data-theme-value="system" data-i18n-title="theme.system" data-i18n-aria-label="theme.system"><i data-icon="monitor"></i></button>
+            <button type="button" role="radio" data-theme-value="light" data-i18n-title="theme.light" data-i18n-aria-label="theme.light"><i data-icon="sun"></i></button>
+            <button type="button" role="radio" data-theme-value="dark" data-i18n-title="theme.dark" data-i18n-aria-label="theme.dark"><i data-icon="moon"></i></button>
+          </div>
+          <button type="button" id="lang-toggle" class="lang-toggle" data-i18n-aria-label="lang.toggleLabel" data-i18n-title="lang.toggleLabel">
+            <span data-i18n="lang.toggle"></span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- Overview -->
+      <section class="panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" hidden>
+        <header class="page-head">
+          <div class="title-row">
+            <h1 data-i18n="nav.overview"></h1>
+            <span class="info">
+              <button type="button" class="info-btn" aria-describedby="tip-overview" aria-expanded="false" data-i18n-aria-label="info.label"><i data-icon="info"></i></button>
+              <span role="tooltip" id="tip-overview" class="tip" data-i18n="overview.sub"></span>
+            </span>
+          </div>
+        </header>
+
+        <div class="stats">
+          <div class="stat"><span class="stat-label"><i data-icon="clock"></i><span data-i18n="stat.time"></span></span><span class="stat-value" id="stat-time">–</span></div>
+          <div class="stat"><span class="stat-label"><i data-icon="ban"></i><span data-i18n="stat.blocked"></span></span><span class="stat-value" id="stat-blocked">–</span></div>
+          <div class="stat"><span class="stat-label"><i data-icon="pause"></i><span data-i18n="stat.pauses"></span></span><span class="stat-value" id="stat-pauses">–</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2 data-i18n="today"></h2><span class="muted small" id="reset-at"></span></div>
+          <ul id="today-list" class="list usage-list"></ul>
+          <div id="today-empty" class="empty" hidden>
+            <i data-icon="hourglass"></i>
+            <p data-i18n="today.empty"></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2 data-i18n="chart.title"></h2>
+            <select id="chart-site" data-i18n-aria-label="chart.filter"></select>
+          </div>
+          <div id="chart" class="chart"></div>
+        </div>
+      </section>
+
+      <!-- Sites -->
+      <section class="panel" role="tabpanel" id="panel-sites" aria-labelledby="tab-sites" hidden>
+        <header class="page-head">
+          <div class="title-row">
+            <h1 data-i18n="nav.sites"></h1>
+            <span class="info">
+              <button type="button" class="info-btn" aria-describedby="tip-sites" aria-expanded="false" data-i18n-aria-label="info.label"><i data-icon="info"></i></button>
+              <span role="tooltip" id="tip-sites" class="tip" data-i18n="sites.sub"></span>
+            </span>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <form id="add-form" class="input-group grow" autocomplete="off">
+            <input id="add-domain" type="text" dir="ltr" data-i18n-placeholder="sites.add" data-i18n-aria-label="sites.addLabel" spellcheck="false">
+            <button class="primary" type="submit"><i data-icon="plus"></i><span data-i18n="add"></span></button>
+          </form>
+          <label class="search">
+            <i data-icon="search"></i>
+            <input id="site-search" type="search" data-i18n-placeholder="search" data-i18n-aria-label="sites.searchLabel">
+          </label>
+        </div>
+        <p id="add-error" class="error" role="alert" hidden></p>
+
+        <ul id="site-list" class="list cards"></ul>
+        <div id="sites-empty" class="empty" hidden>
+          <i data-icon="globe"></i>
+          <p id="sites-empty-text"></p>
+        </div>
+      </section>
+
+      <!-- Groups -->
+      <section class="panel" role="tabpanel" id="panel-groups" aria-labelledby="tab-groups" hidden>
+        <header class="page-head">
+          <div class="title-row">
+            <h1 data-i18n="nav.groups"></h1>
+            <span class="info">
+              <button type="button" class="info-btn" aria-describedby="tip-groups" aria-expanded="false" data-i18n-aria-label="info.label"><i data-icon="info"></i></button>
+              <span role="tooltip" id="tip-groups" class="tip" data-i18n="groups.sub"></span>
+            </span>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <form id="group-form" class="input-group grow" autocomplete="off">
+            <input id="group-name" type="text" data-i18n-placeholder="groups.add" data-i18n-aria-label="groups.addLabel" maxlength="40">
+            <button class="primary" type="submit"><i data-icon="plus"></i><span data-i18n="add"></span></button>
+          </form>
+        </div>
+        <p id="group-error" class="error" role="alert" hidden></p>
+
+        <ul id="group-list" class="list cards"></ul>
+        <div id="groups-empty" class="empty" hidden>
+          <i data-icon="layers"></i>
+          <p data-i18n="groups.empty"></p>
+        </div>
+      </section>
+      <!-- Salah First -->
+      <section class="panel" role="tabpanel" id="panel-prayer" aria-labelledby="tab-prayer" hidden>
+        <header class="page-head">
+          <div class="title-row">
+            <h1 data-i18n="nav.prayer"></h1>
+            <span class="info">
+              <button type="button" class="info-btn" aria-describedby="tip-prayer" aria-expanded="false" data-i18n-aria-label="info.label"><i data-icon="info"></i></button>
+              <span role="tooltip" id="tip-prayer" class="tip" data-i18n="prayer.sub"></span>
+            </span>
+          </div>
+        </header>
+
+        <div class="card prayer-status" id="prayer-status" aria-live="polite"></div>
+
+        <form id="prayer-form" class="prayer-form" autocomplete="off" novalidate>
+          <div class="card setting-row">
+            <div>
+              <h2 data-i18n="prayer.enable"></h2>
+              <p class="hint" data-i18n="prayer.enableHint"></p>
+            </div>
+            <label class="switch"><input id="pr-enabled" type="checkbox" data-i18n-aria-label="prayer.enable"><span aria-hidden="true"></span></label>
+          </div>
+
+          <div class="card">
+            <h2><i data-icon="map-pin"></i><span data-i18n="prayer.location"></span></h2>
+            <!-- Location: "Use my location" (asks the browser, only on click) or a typed city. -->
+            <div class="locate">
+              <button type="button" id="pr-locate" class="locate-btn"><i data-icon="locate-fixed"></i><span data-i18n="prayer.locate"></span></button>
+              <div id="pr-here" class="here-chip" hidden>
+                <i data-icon="map-pin"></i>
+                <span><strong data-i18n="prayer.here"></strong> · <span id="pr-coords" dir="ltr"></span></span>
+                <button type="button" id="pr-type-city" class="link-btn" data-i18n="prayer.typeCity"></button>
+              </div>
+            </div>
+            <div class="form-grid">
+              <label class="form-field wide" id="pr-address-field">
+                <span data-i18n="prayer.or"></span>
+                <input id="pr-address" type="text" dir="auto" data-i18n-placeholder="prayer.addressPh" maxlength="120" data-i18n-aria-label="prayer.address">
+              </label>
+              <label class="form-field">
+                <span data-i18n="prayer.method"></span>
+                <select id="pr-method"></select>
+              </label>
+              <label class="form-field">
+                <span data-i18n="prayer.school"></span>
+                <select id="pr-school"></select>
+              </label>
+            </div>
+            <p class="hint" data-i18n="prayer.privacy"></p>
+          </div>
+
+          <div class="card">
+            <h2><i data-icon="lock"></i><span data-i18n="prayer.timing"></span></h2>
+            <div class="form-grid">
+              <label class="form-field">
+                <span data-i18n="prayer.before"></span>
+                <input id="pr-before" type="number" min="0" max="60" step="1" inputmode="numeric">
+              </label>
+              <label class="form-field">
+                <span data-i18n="prayer.after"></span>
+                <input id="pr-after" type="number" min="0" max="120" step="1" inputmode="numeric">
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h2 data-i18n="prayer.today"></h2>
+              <button type="button" id="pr-refresh" class="small"><i data-icon="refresh-cw"></i><span data-i18n="prayer.refresh"></span></button>
+            </div>
+            <ul id="pr-list" class="list prayer-list"></ul>
+            <p id="pr-empty" class="hint" data-i18n="prayer.noTimes" hidden></p>
+          </div>
+
+          <ul id="pr-errors" class="error-list" role="alert"></ul>
+          <div class="savebar">
+            <button class="primary" type="submit"><i data-icon="check"></i><span data-i18n="prayer.save"></span></button>
+          </div>
+        </form>
+      </section>
+      <!-- About -->
+      <section class="panel" role="tabpanel" id="panel-about" aria-labelledby="tab-about" hidden>
+        <header class="page-head">
+          <div class="title-row">
+            <h1 data-i18n="nav.about"></h1>
+            <span class="info">
+              <button type="button" class="info-btn" aria-describedby="tip-about" aria-expanded="false" data-i18n-aria-label="info.label"><i data-icon="info"></i></button>
+              <span role="tooltip" id="tip-about" class="tip" data-i18n="about.sub"></span>
+            </span>
+          </div>
+        </header>
+        <div id="about-content" class="about"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script type="module" src="../shared/theme.js"></script>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

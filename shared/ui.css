@@ -1,0 +1,106 @@
+/* ui.css — components shared by the settings page and the popup. */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  min-width: 0;
+}
+.card h2 { font-size: 15px; margin: 0; display: flex; align-items: center; gap: 8px; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
+button.small { padding: 4px 10px; font-size: 13px; }
+button.ghost { border-color: transparent; background: none; color: var(--muted); }
+button.ghost:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+button.icon-only { padding: 7px; line-height: 0; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--accent);
+  white-space: nowrap;
+}
+.badge.neutral { background: var(--surface-2); color: var(--muted); }
+
+/* Progress bar */
+.bar { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.bar.warn span { background: var(--warn); }
+.bar.full span { background: var(--danger); }
+
+.list { list-style: none; margin: 0; padding: 0; }
+.usage-list li { display: grid; gap: 6px; padding: 10px 0; border-top: 1px solid var(--line); }
+.usage-list li:first-child { border-top: 0; padding-top: 0; }
+.usage-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.usage-name { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; font-weight: 600; min-width: 0; overflow-wrap: anywhere; } /* badge wraps before the domain breaks */
+.usage-value { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.usage-value.blocked { color: var(--danger); }
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Friction dialog (options/friction.js): used by the settings page and the blocked page. */
+button.danger { background: var(--danger); border-color: var(--danger); color: #fff; font-weight: 600; }
+dialog.friction .hint { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+dialog.friction textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+dialog.friction textarea:hover { border-color: var(--muted); }
+
+
+textarea.typing {
+  width: 100%;
+  font-family: var(--ar-font);
+  font-size: 20px;
+  line-height: 1.8;
+  resize: vertical;
+  text-align: right;
+}
+
+dialog.friction {
+  width: min(680px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 24px 26px;
+  box-shadow: var(--shadow);
+}
+dialog.friction::backdrop { background: rgba(5, 10, 22, 0.6); backdrop-filter: blur(2px); }
+dialog.friction h2 { margin: 0 0 8px; font-size: 18px; }
+dialog.friction .reasons { margin: 0 0 8px; padding-inline-start: 20px; font-size: 14px; }
+.friction-quote { margin: 16px 0; padding: 18px; background: var(--bg); border-radius: var(--radius-lg); }
+.friction-quote blockquote { margin: 0; font-size: clamp(18px, 5vw, 26px); line-height: 1.9; font-weight: 700; user-select: none; }
+.friction-quote figcaption { margin-top: 6px; color: var(--gold); font-size: 17px; }
+.typing-label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+.typing-status { min-height: 1.5em; margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.typing-status.ok { color: var(--accent); }
+.typing-status.bad { color: var(--danger); }
+.friction-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; margin-top: 14px; }
+.friction-actions .countdown { margin-inline-end: auto; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+

@@ -1,0 +1,163 @@
+/* base.css — fonts, colour tokens and base controls shared by every extension page.
+ *
+ * Theme: follows the system by default. Settings → Appearance can force one:
+ * shared/theme.js then sets <html data-theme="light|dark">.
+ */
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('../fonts/Amiri-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Amiri';
+  src: url('../fonts/Amiri-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+}
+/* Arabic interface font (SIL OFL, fonts/IBMPlexSansArabic-OFL.txt). */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('../fonts/IBMPlexSansArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('../fonts/IBMPlexSansArabic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('../fonts/IBMPlexSansArabic-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('../fonts/IBMPlexSansArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f3f6fa;
+  --surface: #ffffff;
+  --surface-2: #eaeff6;       /* hover, inset areas */
+  --text: #0f172a;
+  --muted: #5a6578;
+  --line: #dce3ec;
+  --accent: #1a6f88;
+  --accent-soft: #e0eff5;     /* tinted backgrounds: active tab, chips */
+  --accent-text: #ffffff;
+  --gold: #8a5c10;
+  --warn: #b87a10; /* bars only (3:1 is enough for non-text) */
+  --danger: #b4382a;
+  --danger-soft: #fbe8e5;
+  --chart: #0f86a1;           /* validated: chroma, lightness band, 3:1 vs surface */
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 16px rgba(15, 23, 42, 0.07);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --ui-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ar-font: 'Amiri', 'Noto Naskh Arabic', serif;
+  color-scheme: light;
+}
+
+/* Arabic interface: a proper Arabic UI font (it has Latin glyphs too). */
+:root[lang='ar'] {
+  --ui-font: 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dark tokens: used when the system is dark (unless forced light), or when forced dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0b1220;
+    --surface: #111a2b;
+    --surface-2: #18233a;
+    --text: #e6eaf2;
+    --muted: #8b97ab;
+    --line: #1f2a3d;
+    --accent: #5fb6c9;
+    --accent-soft: #13304a;
+    --accent-text: #071019;
+    --gold: #e3b65e;
+    --warn: #e3b65e;
+    --danger: #f08a7a;
+    --danger-soft: #3b1e27;
+    --chart: #2b9db8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(2, 6, 16, 0.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0b1220;
+  --surface: #111a2b;
+  --surface-2: #18233a;
+  --text: #e6eaf2;
+  --muted: #8b97ab;
+  --line: #1f2a3d;
+  --accent: #5fb6c9;
+  --accent-soft: #13304a;
+  --accent-text: #071019;
+  --gold: #e3b65e;
+  --warn: #e3b65e;
+  --danger: #f08a7a;
+  --danger-soft: #3b1e27;
+  --chart: #2b9db8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(2, 6, 16, 0.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 var(--ui-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 14px;
+  transition: background 0.12s, border-color 0.12s;
+}
+button:hover:not(:disabled) { background: var(--surface-2); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+button.primary:hover:not(:disabled) { background: var(--accent); filter: brightness(1.08); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Inline SVG icons (shared/icons.js) */
+.icon { width: 18px; height: 18px; flex: none; vertical-align: -3px; }
+
+/* Arabic reminder text, used on the blocked page and in the friction step. */
+.quote { font-family: var(--ar-font); direction: rtl; text-align: center; }
+
+/* Poetry (shared/poetry.js): each verse on two lines, offset like a printed
+   diwan. The grid is as wide as the longer half plus the offset; in RTL the
+   first half (sadr) sits at the right edge, the second (ajuz) at the left. */
+.poem { display: inline-grid; gap: 0.9em; }
+.verse { display: grid; row-gap: 0.15em; }
+.verse .sadr { justify-self: start; margin-inline-end: 2.5em; }
+.verse .ajuz { justify-self: end; margin-inline-start: 2.5em; }
+@media (max-width: 560px) {
+  .verse .sadr { margin-inline-end: 1em; }
+  .verse .ajuz { margin-inline-start: 1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

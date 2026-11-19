@@ -1,0 +1,117 @@
+/* overlay.css — the "minutes left" card, loaded inside its shadow root.
+ * Colours mirror shared/base.css (the page's own CSS can't reach in here). */
+
+:host { all: initial; }
+
+.card {
+  --surface: #ffffff;
+  --surface-2: #eaeff6;
+  --text: #0f172a;
+  --muted: #5a6578;
+  --line: #dce3ec;
+  --accent: #1a6f88;
+  --accent-soft: #e0eff5;
+  --gold: #8a5c10;
+  --warn: #b87a10;
+  --danger: #b4382a;
+  --danger-soft: #fbe8e5;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 10px 32px rgba(15, 23, 42, 0.16);
+
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2147483647;
+  display: grid;
+  gap: 10px;
+  width: min(320px, calc(100vw - 32px));
+  padding: 12px 12px 12px 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  font: 14px/1.4 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  animation: in 0.2s ease-out;
+}
+
+/* Dark: when the system is dark (unless forced light), or when forced dark. */
+@media (prefers-color-scheme: dark) {
+  .card:not([data-theme='light']) {
+    --surface: #111a2b;
+    --surface-2: #18233a;
+    --text: #e6eaf2;
+    --muted: #8b97ab;
+    --line: #1f2a3d;
+    --accent: #5fb6c9;
+    --accent-soft: #13304a;
+    --gold: #e3b65e;
+    --warn: #e3b65e;
+    --danger: #f08a7a;
+    --danger-soft: #3b1e27;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(2, 6, 16, 0.45);
+  }
+}
+.card[data-theme='dark'] {
+  --surface: #111a2b;
+  --surface-2: #18233a;
+  --text: #e6eaf2;
+  --muted: #8b97ab;
+  --line: #1f2a3d;
+  --accent: #5fb6c9;
+  --accent-soft: #13304a;
+  --gold: #e3b65e;
+  --warn: #e3b65e;
+  --danger: #f08a7a;
+  --danger-soft: #3b1e27;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(2, 6, 16, 0.45);
+}
+
+.head { display: flex; align-items: center; gap: 12px; }
+
+.tile {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.text { min-width: 0; flex: 1; }
+.title { margin: 0; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.sub { margin: 1px 0 0; color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.close {
+  flex: none;
+  align-self: flex-start;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.close:hover { color: var(--text); background: var(--surface-2); }
+.close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.bar { height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--warn); border-radius: 2px; transition: width 1s linear; }
+
+/* Last minute */
+.card.urgent .tile { background: var(--danger-soft); color: var(--danger); }
+.card.urgent .bar span { background: var(--danger); }
+
+@keyframes in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+  .bar span { transition: none; }
+}

@@ -1,0 +1,14 @@
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Packaged builds (zip the folder yourself for a store upload)
+*.zip
+*.crx
+*.pem
+
+# Never needed: the extension has no dependencies or build step
+node_modules/
