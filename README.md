@@ -161,4 +161,4 @@ Contributions are welcome:
 
 ### License
 
-[MIT](LICENSE) © 2026 Mahmoud Nasr. Fonts and icons keep their own licences (see [LICENSE](LICENSE)).
+[MIT](LICENSE) © 2026 Mahmoud Nasr. Fonts and icons keep their own licences (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
