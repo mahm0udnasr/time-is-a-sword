@@ -67,7 +67,7 @@ A browser extension that guards your time: it blocks or time-limits distracting 
 
 ### الخصوصية
 
-كل بياناتك تبقى على جهازك داخل التخزين المحلي للمتصفح: لا خوادم، ولا تحليلات، ولا حسابات. الاستثناء الوحيد هو **الصلاة أولًا**: لجلب المواقيت يُرسَل إلى [api.aladhan.com](https://aladhan.com/prayer-times-api) اسم المدينة الذي تكتبه، أو موقعك التقريبي (لأقرب كيلومتر تقريبًا) إن ضغطت «استخدم موقعي الحالي»، ولا شيء غير ذلك.
+([سياسة الخصوصية](PRIVACY.md)) كل بياناتك تبقى على جهازك داخل التخزين المحلي للمتصفح: لا خوادم، ولا تحليلات، ولا حسابات. الاستثناء الوحيد هو **الصلاة أولًا**: لجلب المواقيت يُرسَل إلى [api.aladhan.com](https://aladhan.com/prayer-times-api) اسم المدينة الذي تكتبه، أو موقعك التقريبي (لأقرب كيلومتر تقريبًا) إن ضغطت «استخدم موقعي الحالي»، ولا شيء غير ذلك.
 
 ### المساهمة
 
@@ -125,7 +125,7 @@ Requires Chrome 120 or newer (or Brave/Edge built on it).
 
 ### Privacy
 
-Everything stays on your device, in the browser's local storage: no servers, no analytics, no accounts. The one exception is **Salah First**: to get prayer times it sends [api.aladhan.com](https://aladhan.com/prayer-times-api) the city you type, or your approximate location (to about 1 km) if you press “Use my location”, and nothing else.
+Everything stays on your device, in the browser's local storage: no servers, no analytics, no accounts. The one exception is **Salah First**: to get prayer times it sends [api.aladhan.com](https://aladhan.com/prayer-times-api) the city you type, or your approximate location (to about 1 km) if you press “Use my location”, and nothing else. Full details: [privacy policy](PRIVACY.md).
 
 ### Permissions
 
@@ -143,7 +143,7 @@ Contributions are welcome:
 
 - **Found a bug or have an idea?** Open an [issue](https://github.com/mahm0udnasr/time-is-a-sword/issues).
 - **New reminders:** add them to `data/quotes.json` with their source; please check the hadith's authenticity and the attribution.
-- **Code:** no build step and no dependencies. Read the [development notes](docs/DEVELOPMENT.md) and run `node tests/run.mjs` before opening a pull request.
+- **Code:** no build step and no dependencies. Read the [development notes](docs/DEVELOPMENT.md) and run `node tests/run.mjs` before opening a pull request. `node tools/package.mjs` builds the store ZIP; the store texts live in [`store/listing.md`](store/listing.md).
 
 ### Credits
 

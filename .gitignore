@@ -5,7 +5,8 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Packaged builds (zip the folder yourself for a store upload)
+# Packaged builds (made by: node tools/package.mjs)
+dist/
 *.zip
 *.crx
 *.pem
