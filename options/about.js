@@ -1,6 +1,6 @@
 /**
  * about.js (options) — the "About" tab: the author's card (photo, name, bio,
- * links) and the extension's card (version, source code, issues, licence, credits).
+ * links) and the extension's card (version, source code, issues, licence).
  *
  * To change the author's details, edit AUTHOR below (and images/author.png).
  */
@@ -13,8 +13,8 @@ export const REPO = 'https://github.com/mahm0udnasr/time-is-a-sword';
 const AUTHOR = {
   name: { ar: 'محمود نصر', en: 'Mahmoud Nasr' },
   bio: {
-    ar: 'طالب نظم معلومات الأعمال (BIS)، أنتقل من تطوير الويب إلى تعلّم الآلة والذكاء الاصطناعي، وأحلّ المسائل البرمجية بلغة C++.',
-    en: 'BIS student, transitioning from web development to machine learning & AI. Problem solver in C++.'
+    ar: 'طالب نظم معلومات الأعمال (BIS)، أنتقل من تطوير الويب إلى تعلم الآلة والذكاء الاصطناعي',
+    en: 'BIS student, transitioning from web development to machine learning & AI.'
   },
   location: { ar: 'مصر', en: 'Egypt' },
   photo: '../images/author.png',
@@ -29,15 +29,6 @@ const AUTHOR = {
     ['Facebook', 'https://facebook.com/mhm0udnasr/', { brand: 'facebook' }]
   ]
 };
-
-/** Built when rendering, so the note is in the page's language. */
-const credits = () => [
-  ['Amiri', 'https://github.com/aliftype/amiri', 'OFL'],
-  ['IBM Plex Sans Arabic', 'https://github.com/IBM/plex', 'OFL'],
-  ['Lucide', 'https://lucide.dev', 'ISC'],
-  ['Simple Icons', 'https://simpleicons.org', 'CC0'],
-  ['Aladhan API', 'https://aladhan.com/prayer-times-api', t('about.prayerApi')]
-];
 
 /** An external link that opens in a new tab. */
 const ext = (href, ...children) => h('a', { href, target: '_blank', rel: 'noopener noreferrer' }, ...children);
@@ -71,9 +62,6 @@ export function renderAbout() {
       ext(REPO, icon('code-xml', { size: 16 }), h('span', {}, t('about.source'))),
       ext(`${REPO}/issues`, icon('bug', { size: 16 }), h('span', {}, t('about.issue'))),
       ext(`${REPO}/blob/main/LICENSE`, icon('scale', { size: 16 }), h('span', {}, 'MIT'))),
-    h('h3', {}, t('about.credits')),
-    h('ul', { class: 'about-credits' }, credits().map(([name, url, note]) =>
-      h('li', {}, ext(url, name, icon('external-link', { size: 13 })), h('span', { class: 'muted small' }, note)))),
     h('p', { class: 'about-footer muted small' }, icon('heart', { size: 14 }), t('about.footer')));
 
   document.getElementById('about-content').replaceChildren(author, extension);

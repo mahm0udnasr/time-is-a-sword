@@ -413,7 +413,6 @@ button.danger-hover:hover:not(:disabled) { color: var(--danger); background: var
 
 .about { display: grid; gap: 16px; }
 .about h2 { font-size: 20px; }
-.about h3 { font-size: 13px; color: var(--muted); font-weight: 600; margin: 18px 0 8px; }
 
 .about-author {
   display: grid;
@@ -458,11 +457,6 @@ button.danger-hover:hover:not(:disabled) { color: var(--danger); background: var
 .about-ext-head h2 { margin: 0; }
 .about-ext-head p { margin: 2px 0 0; }
 .about-desc { line-height: 1.7; margin: 14px 0; max-width: 70ch; }
-.about-credits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 16px; }
-.about-credits li { display: flex; align-items: center; gap: 8px; }
-.about-credits a { display: inline-flex; align-items: center; gap: 4px; color: var(--text); text-decoration: none; font-weight: 500; }
-.about-credits a:hover { color: var(--accent); }
-.about-credits .icon { color: var(--muted); }
 .about-footer { display: flex; align-items: center; gap: 6px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); }
 .about-footer .icon { color: var(--danger); }
 
